@@ -209,7 +209,7 @@ osserva();
 /* video serra: si carica solo quando è visibile; niente movimento se l'utente lo ha chiesto */
 (function(){var vs=[].slice.call(document.querySelectorAll("video.vid"));if(!vs.length)return;
 var ferma=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;if(ferma)return;
-function avvia(v){if(!v.src){v.src=v.getAttribute("data-v")+(innerWidth<900?"-960":"-1600")+".mp4?v=1"}var p=v.play();if(p&&p.catch)p.catch(function(){})}
+function avvia(v){if(!v.src){v.src=v.getAttribute("data-v")+(innerWidth<900?"-960":"-1600")+".mp4?v=2"}var p=v.play();if(p&&p.catch)p.catch(function(){})}
 if(!("IntersectionObserver" in window)){vs.forEach(avvia);return}
 var vo=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)avvia(e.target);else if(e.target.src)e.target.pause()})},{rootMargin:"200px 0px"});
 vs.forEach(function(v){vo.observe(v)})})();
