@@ -6,8 +6,9 @@ var P=window.PRODOTTI||[];
 var lang=(document.documentElement.lang||"it").slice(0,2);
 var A=document.body.getAttribute("data-a")||"";
 var FILE=document.body.getAttribute("data-f")||"index.html";
-var I=lang==="en"?1:lang==="fr"?2:0;
-function T(it,en,fr){return [it,en,fr][I]}
+var I=lang==="en"?1:lang==="fr"?2:lang==="de"?3:0;
+var DE={"Aggiorna quantità in lista": "Menge in der Liste aktualisieren", "Aggiungi alla lista richiesta": "Zur Anfrageliste hinzufügen", "Aggiungi almeno un modello": "Fügen Sie mindestens ein Modell hinzu", "Alberello natalizio decorato, codice ": "Dekoriertes Weihnachtsbäumchen, Artikel ", "Apri il modello ": "Modell öffnen: ", "Buongiorno, vorrei ricevere listino e disponibilità per questi alberelli:": "Guten Tag, ich möchte Ihre Preisliste und Verfügbarkeit für diese Bäumchen erhalten:", "Cod.": "Art.", "Codice": "Artikel", "In lista": "In der Liste", "La lista è vuota": "Ihre Liste ist leer", "La lista è vuota. Apri un modello dalla collezione e aggiungilo con la quantità che ti serve.": "Ihre Liste ist leer. Öffnen Sie ein Modell der Kollektion und fügen Sie die gewünschte Menge hinzu.", "Lista copiata": "Liste kopiert", "Meno": "Weniger", "Nella tua lista: ": "In Ihrer Liste: ", "Pezzi": "Stück", "Pianta": "Pflanze", "Più": "Mehr", "Quantità ": "Menge ", "Ragione sociale:\nCittà:\nTelefono:\n": "Firma:\nStadt / Land:\nTelefon:\n", "Richiesta listino": "Preisanfrage", "Si apre la tua email con il messaggio pronto": "Ihr E-Mail-Programm öffnet sich mit der fertigen Nachricht", "Tutti": "Alle", "Vai alla collezione": "Zur Kollektion", "Vaso": "Topf", "modelli": "Modelle", "modello": "Modell", "pezzi": "Stück", "pz": "Stück", "vaso": "Topf", "Rosso": "Rot", "Oro e argento": "Gold und Silber", "Naturale e crema": "Natur und Creme", "Tartan e quadri": "Tartan und Karo", "Fantasia": "Gemustert", "Blu": "Blau"};
+function T(it,en,fr){return I===3?(DE[it]!==undefined?DE[it]:en):[it,en,fr][I]}
 var COL={rosso:["Rosso","Red","Rouge","#A8322F"],oro:["Oro e argento","Gold & silver","Or et argent","linear-gradient(135deg,#D4B26A 0 50%,#C9CCD1 50%)"],naturale:["Naturale e crema","Natural & cream","Naturel et crème","#E7DCC8"],tartan:["Tartan e quadri","Tartan & check","Tartan et carreaux","repeating-linear-gradient(45deg,#8E2B2B 0 3px,#2B5A3C 3px 6px)"],fantasia:["Fantasia","Patterned","Motifs","linear-gradient(135deg,#B5463C 0 50%,#EDE3D0 50%)"],blu:["Blu","Blue","Bleu","#2F4E9E"]};
 function $(s,c){return (c||document).querySelector(s)}
 function $$(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))}
@@ -21,7 +22,7 @@ $$(".lang a").forEach(function(a){a.addEventListener("click",function(){store("a
   var scelta=store("av_lang");
   if(scelta||lang!=="it")return;
   var nl=(navigator.language||"it").slice(0,2).toLowerCase();
-  if(nl==="en"||nl==="fr"){store("av_lang",nl);location.replace(nl+"/"+(FILE==="index.html"?"":FILE)+location.hash)}
+  if(nl==="en"||nl==="fr"||nl==="de"){store("av_lang",nl);location.replace(nl+"/"+(FILE==="index.html"?"":FILE)+location.hash)}
 })();
 
 /* menu */
@@ -86,7 +87,7 @@ function sequenza(){return $("#catalogo")?visibili:P}
 function riempi(p){
   attuale=p;var img=$(".m-foto img",mod);
   img.src=A+"img/prodotti/"+p.c+".webp";img.alt=T("Alberello natalizio decorato, codice ","Decorated Christmas tree, item ","Petit arbre de Noël décoré, référence ")+p.c;
-  $("#m-cod").textContent=p.c;$("#m-sp").textContent=p.s;$("#m-vaso").textContent="Ø "+p.v+" cm";$("#m-col").textContent=COL[p.k][I];
+  $("#m-cod").textContent=p.c;$("#m-sp").textContent=p.s;$("#m-vaso").textContent="Ø "+p.v+" cm";$("#m-col").textContent=T(COL[p.k][0],COL[p.k][1],COL[p.k][2]);
   $("#m-q").value=lista[p.c]||10;
   $("#m-aggiungi").textContent=lista[p.c]?T("Aggiorna quantità in lista","Update quantity in list","Mettre à jour la quantité"):T("Aggiungi alla lista richiesta","Add to request list","Ajouter à la liste de demande");
 }

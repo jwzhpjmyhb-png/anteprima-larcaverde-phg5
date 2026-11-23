@@ -439,3 +439,11 @@ section.cat{padding-top:0}
 .pv-s a,.priv a,.legal a{text-decoration:underline;text-underline-offset:3px}
 .pv-data{margin-top:44px;font-size:13px;color:var(--testo-2)}
 .stretto .lead{margin-top:22px}
+
+/* tedesco: parole composte lunghe -> sillabazione */
+h1,h2,h3{overflow-wrap:break-word}
+:lang(de) h1,:lang(de) h2,:lang(de) h3,:lang(de) .lead{-webkit-hyphens:auto;hyphens:auto}
+.fatti .wrap{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(max-width:820px){.fatti .wrap{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+.fatti b{overflow-wrap:break-word}
+:lang(de) .fatti b,:lang(de) .fatti span{-webkit-hyphens:auto;hyphens:auto}
