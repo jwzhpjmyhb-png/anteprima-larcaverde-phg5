@@ -1,3 +1,6 @@
+@font-face{font-family:"Bodoni Moda";font-style:normal;font-weight:400 600;font-display:swap;src:url(font/bodoni.woff2) format("woff2")}
+@font-face{font-family:"Bodoni Moda";font-style:italic;font-weight:400 600;font-display:swap;src:url(font/bodoni-italic.woff2) format("woff2")}
+@font-face{font-family:"Hanken Grotesk";font-style:normal;font-weight:400 600;font-display:swap;src:url(font/hanken.woff2) format("woff2")}
 /* L'ArcaVerde v2 — FRAME Agency */
 :root{
   --crema:#F9F6F1; --crema-2:#F1EBE1; --carta:#FFFDF9;
@@ -267,8 +270,16 @@ section.primo{padding-top:clamp(40px,5vw,64px)}
 .voce a:hover{color:var(--oro-t)}
 .bottoni{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
 .mappa{border-radius:var(--r);overflow:hidden;min-height:440px;background:var(--crema-2)}
+.mappa{position:relative;display:grid}
+.mappa-vela{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;padding:32px;color:var(--verde);background:linear-gradient(180deg,var(--crema-2),#E9E1D3)}
+.mappa-vela b{font:400 24px/1.2 var(--serif)}
+.mappa-vela small{font-size:13px;color:var(--testo-2);max-width:34ch;line-height:1.5}
 .mappa iframe{width:100%;height:100%;min-height:440px;border:0;filter:grayscale(.35) sepia(.12)}
-@media(max-width:860px){.contatti{grid-template-columns:1fr}.mappa,.mappa iframe{min-height:340px}.bottoni .btn{flex:1}}
+@media(max-width:860px){.contatti{grid-template-columns:1fr}.mappa,.mappa{position:relative;display:grid}
+.mappa-vela{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;padding:32px;color:var(--verde);background:linear-gradient(180deg,var(--crema-2),#E9E1D3)}
+.mappa-vela b{font:400 24px/1.2 var(--serif)}
+.mappa-vela small{font-size:13px;color:var(--testo-2);max-width:34ch;line-height:1.5}
+.mappa iframe{min-height:340px}.bottoni .btn{flex:1}}
 
 /* ---------- banda ---------- */
 .banda{position:relative;overflow:hidden;color:var(--crema);background:var(--verde-2)}
@@ -418,3 +429,13 @@ section.cat{padding-top:0}
   .stampa td img{width:16mm;height:21mm;object-fit:cover}
   .stampa .pie{margin-top:10mm;font-size:10pt;color:#444}
 }
+
+/* ---------- privacy ---------- */
+.stretto{max-width:760px}
+.pv-h1{font-size:clamp(40px,5vw,64px);margin-top:16px}
+.pv-s{margin-top:44px;padding-top:28px;border-top:1px solid var(--linea)}
+.pv-s h2{font-size:clamp(24px,2.6vw,30px)}
+.pv-s p{margin-top:12px;color:var(--testo-2)}
+.pv-s a,.priv a,.legal a{text-decoration:underline;text-underline-offset:3px}
+.pv-data{margin-top:44px;font-size:13px;color:var(--testo-2)}
+.stretto .lead{margin-top:22px}

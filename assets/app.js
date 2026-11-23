@@ -196,3 +196,6 @@ $$(".anno").forEach(function(e){e.textContent=new Date().getFullYear()});
 disegnaLista();
 osserva();
 })();
+
+/* mappa su richiesta */
+(function(){var m=document.querySelector(".mappa[data-src]");if(!m)return;var b=m.querySelector("button");if(!b)return;b.addEventListener("click",function(){var f=document.createElement("iframe");f.src=m.getAttribute("data-src");f.title=m.getAttribute("data-title");f.setAttribute("referrerpolicy","no-referrer-when-downgrade");f.loading="lazy";m.innerHTML="";m.appendChild(f)})})();
