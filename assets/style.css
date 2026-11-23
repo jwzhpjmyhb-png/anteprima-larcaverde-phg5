@@ -459,3 +459,20 @@ h1,h2,h3{overflow-wrap:break-word}
 .lang-menu a{padding:11px 14px;border-radius:10px;text-align:center}
 .lang-menu a:hover{background:var(--linea-2)}
 .lang-menu a[aria-current]{box-shadow:none;background:var(--verde);color:var(--crema)}
+
+/* pagina Fiori */
+.ancore{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.ancore a{border:1px solid var(--linea);border-radius:999px;padding:11px 20px;font:400 italic 18px/1.1 var(--serif);color:var(--verde);transition:background .3s,color .3s}
+.ancore a:hover{background:var(--verde);color:var(--crema)}
+.s0{padding:0 0 clamp(40px,6vw,80px)}
+.largo{border-radius:var(--r,6px);overflow:hidden}
+.largo img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+@media(max-width:760px){.largo img{aspect-ratio:4/5}}
+.scheda{margin-top:26px;border-top:1px solid var(--linea)}
+.scheda div{display:grid;grid-template-columns:120px 1fr;gap:16px;padding:13px 0;border-bottom:1px solid var(--linea)}
+.scheda dt{font:600 11.5px/1.5 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--oro)}
+.scheda dd{margin:0;color:var(--testo)}
+.scheda+.btn{margin-top:30px}
+.verde .nota-foto{font-size:13px;color:rgba(249,246,241,.62)}
+.azioni-b{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+section[id^="fiori-"]{scroll-margin-top:calc(var(--hh) + 20px)}
