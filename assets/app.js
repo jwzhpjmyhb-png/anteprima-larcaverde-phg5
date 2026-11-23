@@ -205,3 +205,11 @@ osserva();
 
 /* mappa su richiesta */
 (function(){var m=document.querySelector(".mappa[data-src]");if(!m)return;var b=m.querySelector("button");if(!b)return;b.addEventListener("click",function(){var f=document.createElement("iframe");f.src=m.getAttribute("data-src");f.title=m.getAttribute("data-title");f.setAttribute("referrerpolicy","no-referrer-when-downgrade");f.loading="lazy";m.innerHTML="";m.appendChild(f)})})();
+
+/* video serra: si carica solo quando è visibile; niente movimento se l'utente lo ha chiesto */
+(function(){var vs=[].slice.call(document.querySelectorAll("video.vid"));if(!vs.length)return;
+var ferma=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;if(ferma)return;
+function avvia(v){if(!v.src){v.src=v.getAttribute("data-v")+(innerWidth<900?"-960":"-1600")+".mp4?v=1"}var p=v.play();if(p&&p.catch)p.catch(function(){})}
+if(!("IntersectionObserver" in window)){vs.forEach(avvia);return}
+var vo=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)avvia(e.target);else if(e.target.src)e.target.pause()})},{rootMargin:"200px 0px"});
+vs.forEach(function(v){vo.observe(v)})})();
