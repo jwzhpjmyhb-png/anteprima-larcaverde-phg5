@@ -59,7 +59,8 @@ var filtro={v:"",s:"",k:"",q:""},visibili=P;
 function render(){
   var box=$("#catalogo");if(!box)return;
   visibili=P.filter(function(p){return (!filtro.v||p.v==filtro.v)&&(!filtro.s||p.s===filtro.s)&&(!filtro.k||p.k===filtro.k)&&(!filtro.q||p.c.indexOf(filtro.q)>-1)});
-  box.innerHTML=visibili.map(card).join("");
+  box.innerHTML=[9,11,13,17].map(function(v){var g=visibili.filter(function(p){return p.v==v});if(!g.length)return "";
+    return '<section class="gruppo" id="g-'+v+'"><div class="g-testa"><h2>'+T("Vaso","Pot","Pot")+' Ø '+v+' cm</h2><span>'+g.length+" "+(g.length===1?T("modello","model","modèle"):T("modelli","models","modèles"))+'</span></div><div class="griglia">'+g.map(card).join("")+'</div></section>'}).join("");
   var n=visibili.length;
   $("#conta").textContent=n+" "+(n===1?T("modello","model","modèle"):T("modelli","models","modèles"));
   $(".vuoto").style.display=n?"none":"block";
@@ -68,7 +69,7 @@ function render(){
 }
 function setChip(f,v){filtro[f]=v;$$('.chip[data-f="'+f+'"]').forEach(function(x){x.setAttribute("aria-pressed",String(x.getAttribute("data-val")===v))})}
 if($("#catalogo")){
-  $("#chips-colore").innerHTML='<button class="chip" type="button" data-f="k" data-val="" aria-pressed="true">'+T("Tutti","All","Toutes")+'</button>'+Object.keys(COL).map(function(k){return '<button class="chip" type="button" data-f="k" data-val="'+k+'" aria-pressed="false"><span class="pal" style="background:'+COL[k][3]+'"></span>'+COL[k][I]+'</button>'}).join("");
+  if($("#chips-colore"))$("#chips-colore").innerHTML='<button class="chip" type="button" data-f="k" data-val="" aria-pressed="true">'+T("Tutti","All","Toutes")+'</button>'+Object.keys(COL).map(function(k){return '<button class="chip" type="button" data-f="k" data-val="'+k+'" aria-pressed="false"><span class="pal" style="background:'+COL[k][3]+'"></span>'+COL[k][I]+'</button>'}).join("");
   $$(".chip[data-f]").forEach(function(b){b.addEventListener("click",function(){setChip(b.getAttribute("data-f"),b.getAttribute("data-val"));render()})});
   $("#cerca").addEventListener("input",function(e){filtro.q=e.target.value.replace(/\D/g,"").slice(0,3);render()});
   $(".azzera").addEventListener("click",function(){["v","s","k"].forEach(function(f){setChip(f,"")});filtro.q="";$("#cerca").value="";render()});
